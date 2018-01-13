@@ -6,7 +6,7 @@
 /*   By: sderet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 16:11:13 by sderet            #+#    #+#             */
-/*   Updated: 2018/01/09 18:11:38 by sderet           ###   ########.fr       */
+/*   Updated: 2018/01/13 14:07:18 by sderet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ void	print_line(t_image *img, t_pos pos1, t_pos pos2)
 		if (a <= b && hdiff != 0 && ldiff != 0)
 			(ldiff > hdiff ? (tmp.y += tmp.fac_y) : (tmp.x += tmp.fac_x));
 		b = (a <= b ? b - a : b);
-		if (tmp.x >= 0 && tmp.y >= 0 && tmp.x <= img->maxx &&
-				tmp.y <= img->maxy)
+		if (tmp.x >= 0 && tmp.y >= 0 && tmp.x < img->maxx &&
+				tmp.y < img->maxy)
 			print_pixel(img, &tmp, 255);
 		(ldiff > hdiff ? (tmp.x += tmp.fac_x) : (tmp.y += tmp.fac_y));
 		b++;

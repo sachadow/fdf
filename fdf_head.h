@@ -6,7 +6,7 @@
 /*   By: sderet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/18 16:36:53 by sderet            #+#    #+#             */
-/*   Updated: 2018/01/12 18:56:58 by sderet           ###   ########.fr       */
+/*   Updated: 2018/01/13 14:48:50 by sderet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct	s_image
 	int		maxx;
 	int		maxy;
 	int		maxz;
+	int		minz;
 	int		coz;
 }				t_image;
 
@@ -49,7 +50,7 @@ typedef struct	s_pos
 	int fac_y;
 }				t_pos;
 
-void			*window_creation(t_image *img, t_pos ***tab, t_mmlx *mlx);
+void			window_creation(t_image *img, t_pos ***tab, t_mmlx *mlx);
 
 int				get_err(t_pos ***pos);
 

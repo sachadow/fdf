@@ -6,7 +6,7 @@
 /*   By: sderet <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 18:39:48 by sderet            #+#    #+#             */
-/*   Updated: 2018/01/12 19:24:34 by sderet           ###   ########.fr       */
+/*   Updated: 2018/01/13 15:58:14 by sderet           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ void	fin_postab(t_pos ****tab, t_image img)
 	int y;
 
 	y = 0;
-	while ((*tab)[y] != 0)
+	while ((*tab)[0][y] != 0)
 		y++;
 	a = 0;
 	while ((*tab)[a] != 0)
@@ -138,14 +138,18 @@ void	fin_postab(t_pos ****tab, t_image img)
 		b = 0;
 		while ((*tab)[a][b] != 0)
 		{
-			(*tab)[a][b]->x = (b + y - a + 1) * img.t_len;
-			(*tab)[a][b]->y = (b + a + 1) * (img.t_len - img.t_len / 3)
-				- ((*tab)[a][b]->tz * (img.t_len));
+//			(*tab)[a][b]->x = ((b + y - a) * img.t_len) + 50;
+//			(*tab)[a][b]->y = ((b + a) * (img.t_len - img.t_len / 3)
+//				- ((*tab)[a][b]->tz * (img.t_len)))
+//				+ (img.t_len * img.maxz);
+			(*tab)[a][b]->x = ((b + a) * img.t_len) + 50;
+			(*tab)[a][b]->y = ((a - b) * (img.t_len - img.t_len / 3)
+				- ((*tab)[a][b]->tz * (img.t_len))) + ((img.t_len -
+				img.t_len / 3) * ((img.maxz + y))) - ABS(img.minz - img.maxz);
 			b++;
 		}
 		a++;
 	}
-	return ;
 }
 
 t_pos	***youpi(char *filename, t_image *img, t_mmlx *mlx)
@@ -163,7 +167,7 @@ t_pos	***youpi(char *filename, t_image *img, t_mmlx *mlx)
 	if ((tab = postab(split)) == NULL || get_err(tab) != 1)
 		return (NULL);
 	a = -1;
-	mlx->mlx = window_creation(img, tab, mlx);
+	window_creation(img, tab, mlx);
 	while (split[++a] != 0)
 	{
 		b = -1;
